@@ -19,10 +19,11 @@
 #include "interface.h"
 #include "rngs.h"
 
-
 int main2(int argc, char *argv[]) {
     //Default cards, as defined in playDom
-    int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+   // int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+	int k[10] = {baron, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+
     struct gameState g;
     initializeGame(2,k,1,&g);
     printf ("SUCCESSFUL INIT\n");
@@ -58,12 +59,21 @@ int main(int argc, char* argv[]) {
     int currentPlayer;
     int gameOver = FALSE;
     int gameStarted = FALSE;
-    int turnNum = 0;
+    int turnNum = 0;	
 
-    int randomSeed = atoi(argv[1]);
-
+	int randomSeed;
+	
+	// Check to see if there is a random seed entered by user
+	if(argc > 1){
+		randomSeed = atoi(argv[1]);
+	}
+	else{
+		randomSeed = 0;	
+	}
+    
     //Default cards, as defined in playDom
-    int kCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+	// int kCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+	int kCards[10] = {baron, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
 
     struct gameState g;
     struct gameState * game = &g;
@@ -74,7 +84,7 @@ int main(int argc, char* argv[]) {
         printf("Usage: player [integer random number seed]\n");
         return EXIT_SUCCESS;
     }
-
+	
     if(randomSeed <= 0) {
         printf("Usage: player [integer random number seed]\n");
         return EXIT_SUCCESS;
