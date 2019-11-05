@@ -17,7 +17,8 @@ char *inputString()
 	char randChar;
 
 	for(int i = 0; i < STRING_LENGTH; i++){
-		randChar = "abcdefghijklmnopqrstuvwxyz "[random()%27];
+		//randChar = "abcdefghijklmnopqrstuvwxyz"[random()%26];
+		randChar = "reset"[random()%5];
 		randString[i] = randChar;
 	}
 
