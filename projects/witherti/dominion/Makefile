@@ -13,6 +13,33 @@ playdom: dominion.o playdom.c
 testDrawCard: testDrawCard.c dominion.o rngs.o
 	gcc  -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 
+dominionHelperFuncs.o: dominionHelperFuncs.h dominionHelperFuncs.c
+	gcc -c dominionHelperFuncs.c -g -std=c99 -Wall -fpic -lm
+
+testBaron: unittest1.c dominionHelperFuncs.o dominion.o rngs.o
+	gcc  -o testBaron -g unittest1.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	./testBaron
+	gcov dominion.c -f -b
+	vim dominion.c.gcov
+
+testAmbas: unittest2.c dominionHelperFuncs.o dominion.o rngs.o
+	gcc  -o testAmbas -g unittest2.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	./testAmbas
+	gcov dominion.c -f -b
+	vim dominion.c.gcov
+
+testTrib: unittest3.c dominionHelperFuncs.o dominion.o rngs.o
+	gcc  -o testTrib -g unittest3.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	./testTrib
+	gcov dominion.c -f -b
+	vim dominion.c.gcov
+
+testMine: unittest4.c dominionHelperFuncs.o dominion.o rngs.o
+	gcc  -o testMine -g unittest4.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	./testMine
+	gcov dominion.c -f -b
+	vim dominion.c.gcov
+
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
@@ -28,4 +55,5 @@ player: player.c interface.o
 all: playdom player 
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe testBaron testBaron.exe
+	rm -f testAmbas testAmbas.exe testTrib testTrib.exe testMine testMine.exe
