@@ -33,7 +33,7 @@ int main () {
 	int deckCount2;
 
 	// Start tests
-    printf ("*****************\nInitializing tests.\n********************\n");
+    printf ("*****************\nInitializing tests for CARD TRIBUTE\n********************\n");
 
 	initializeGame(numPlayers, k, seed, &G); 
 

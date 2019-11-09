@@ -18,30 +18,30 @@ dominionHelperFuncs.o: dominionHelperFuncs.h dominionHelperFuncs.c
 
 testBaron: unittest1.c dominionHelperFuncs.o dominion.o rngs.o
 	gcc  -o testBaron -g unittest1.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
-	./testBaron
-	gcov dominion.c -f -b
-	vim dominion.c.gcov
 
 testAmbas: unittest2.c dominionHelperFuncs.o dominion.o rngs.o
 	gcc  -o testAmbas -g unittest2.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
-	./testAmbas
-	gcov dominion.c -f -b
-	vim dominion.c.gcov
 
 testTrib: unittest3.c dominionHelperFuncs.o dominion.o rngs.o
 	gcc  -o testTrib -g unittest3.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
-	./testTrib
-	gcov dominion.c -f -b
-	vim dominion.c.gcov
 
 testMine: unittest4.c dominionHelperFuncs.o dominion.o rngs.o
 	gcc  -o testMine -g unittest4.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
-	./testMine
-	gcov dominion.c -f -b
-	vim dominion.c.gcov
+
+testMinion: unittest5.c dominionHelperFuncs.o dominion.o rngs.o
+	gcc  -o testMinion -g unittest5.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
 
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
+
+unittestresults: testBaron testAmbas testTrib testMine testMinion
+	./testBaron &> unittestresult.out
+	./testAmbas	>> unittestresult.out
+	./testTrib >> unittestresult.out
+	./testMine >> unittestresult.out
+	./testMinion >> unittestresult.out
+	gcov dominion.c -f -b >> unittestresult.out
+	cat dominion.c.gcov >> unittestresult.out
 
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
@@ -56,4 +56,4 @@ all: playdom player
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe testBaron testBaron.exe
-	rm -f testAmbas testAmbas.exe testTrib testTrib.exe testMine testMine.exe
+	rm -f testAmbas testAmbas.exe testTrib testTrib.exe testMine testMine.exe testMinion.exe testMinion

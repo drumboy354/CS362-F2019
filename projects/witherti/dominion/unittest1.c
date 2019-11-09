@@ -27,7 +27,7 @@ int main () {
     struct gameState G, testG;	
 
 	// Start tests
-    printf ("*****************\nInitializing tests.\n********************\n");
+    printf ("*****************\nInitializing tests for CARD BARON\n********************\n");
 
 	initializeGame(numPlayers, k, seed, &G); 
 
