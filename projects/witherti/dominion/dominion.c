@@ -36,6 +36,7 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
 
 int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
                    struct gameState *state) {
+
     int i;
     int j;
     int it;
@@ -64,7 +65,6 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
             }
         }
     }
-
 
     //initialize supply
     ///////////////////////////////
@@ -1174,8 +1174,8 @@ int cardBaron(struct gameState *state, const int currentPlayer, const int choice
                         isGameOver(state);
                     }
                 }
-            }
-
+				card_not_discarded = 0; // Exit the loop
+            }	
             else {
                 p++;//Next card
             }
@@ -1294,8 +1294,9 @@ int cardTribute(struct gameState *state, const int currentPlayer, const int next
 	    tributeRevealedCards[1] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
 	    state->deck[nextPlayer][state->deckCount[nextPlayer]--] = -1;
 	    state->deckCount[nextPlayer]--;
+
 	}
-	
+
 	if (tributeRevealedCards[0] == tributeRevealedCards[1]) { //If we have a duplicate card, just drop one
 	    state->playedCards[state->playedCardCount] = tributeRevealedCards[1];
 	    state->playedCardCount++;
@@ -1303,11 +1304,11 @@ int cardTribute(struct gameState *state, const int currentPlayer, const int next
 	}
 	
 	for (int i = 0; i <= 2; i ++) {
-	    if (tributeRevealedCards[i] == copper && tributeRevealedCards[i] == silver && tributeRevealedCards[i] == gold) { //Treasure cards
+	    if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold) { //Treasure cards
 	        state->coins += 2;
 	    }
 	
-	    else if (tributeRevealedCards[i] == estate && tributeRevealedCards[i] == duchy && tributeRevealedCards[i] == province && tributeRevealedCards[i] == gardens && tributeRevealedCards[i] == great_hall) { //Victory Card Found
+	    else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall) { //Victory Card Found
 	        drawCard(currentPlayer, state);
 	        drawCard(currentPlayer, state);
 	    }
@@ -1346,7 +1347,7 @@ int cardMine(struct gameState *state, const int handPos, const int currentPlayer
     //discard trashed card
     for (int i = 0; i < state->handCount[currentPlayer]; i++)
     {
-        if (state->hand[currentPlayer][i] == j)
+        if (state->hand[currentPlayer][i] == i)
         {
             discardCard(i, currentPlayer, state, 0);
             break;
