@@ -66,7 +66,7 @@ int main () {
 
 	// Get the card played
 	card = handCard(handPos, &testG);
-
+	
 	// Call function
 	cardEffect(card, choice1, choice2, choice3, &testG, handPos, &coin_bonus);
 

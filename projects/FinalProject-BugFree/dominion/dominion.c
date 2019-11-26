@@ -818,7 +818,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             return -1;
         }
 
-        if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
+        if ( (getCost(state->hand[currentPlayer][choice1]) + 3) < getCost(choice2) )
         {
             return -1;
         }
@@ -833,7 +833,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         {
             if (state->hand[currentPlayer][i] == j)
             {
-                discardCard(i, currentPlayer, state, 0);
+                discardCard(i, currentPlayer, state, 1);
                 break;
             }
         }
@@ -843,7 +843,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     case remodel:
         j = state->hand[currentPlayer][choice1];  //store card we will trash
 
-        if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
+        if ( (getCost(state->hand[currentPlayer][choice1]) + 2) < getCost(choice2) )
         {
             return -1;
         }
@@ -858,11 +858,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         {
             if (state->hand[currentPlayer][i] == j)
             {
-                discardCard(i, currentPlayer, state, 0);
+                discardCard(i, currentPlayer, state, 1);
                 break;
             }
         }
-
 
         return 0;
 
@@ -1270,8 +1269,12 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
     if (trashFlag < 1)
     {
         //add card to played pile
-        state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
-        state->playedCardCount++;
+        //state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
+        //state->playedCardCount++;
+
+		state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][handPos];
+		state->discardCount[currentPlayer]++;
+
     }
 
     //set played card to -1

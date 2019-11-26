@@ -191,7 +191,7 @@ int main () {
 	printf("number of cards in p1 hand = %d, expected = %d\n", testG.handCount[currentPlayer], handCountBefore-2);	// Discarding remodel, province
 	printf("number of cards in p1 discard = %d, expected = %d\n", testG.discardCount[currentPlayer], discardCountBefore+2); // +1 remodel, +1 card exchanging
 	printf("number of province in p1 hand = %d, expected = %d\n", cardsInHand(&testG, province, 0), numProvHand);
-	printf("number of council_room in p1 discard = %d, expected = %d\n", cardsInDiscard(&testG, council_room, 0), numCouncilDiscard);
+	printf("number of council_room in p1 discard = %d, expected = %d\n", cardsInDiscard(&testG, council_room, 0), numCouncilDiscard+1);
 
     printf ("\n*******************\nALL TESTS DONE\n*********************\n");
 
