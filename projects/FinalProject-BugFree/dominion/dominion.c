@@ -401,7 +401,7 @@ int isGameOver(struct gameState *state) {
 
     //if three supply pile are at 0, the game ends
     j = 0;
-    for (i = 0; i < 25; i++)
+    for (i = 0; i < 27; i++)
     {
         if (state->supplyCount[i] == 0)
         {
@@ -467,7 +467,7 @@ int scoreFor (int player, struct gameState *state) {
     }
 
     //score from deck
-    for (i = 0; i < state->discardCount[player]; i++)
+    for (i = 0; i < state->deckCount[player]; i++)
     {
         if (state->deck[player][i] == curse) {
             score = score - 1;
@@ -758,6 +758,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         }
         //Backup hand
 
+        // Store the number of coins before modifying them
+        int backupCoins = state->coins;
+
         //Update Coins for Buy
         updateCoins(currentPlayer, state, 5);
         x = 1;//Condition to loop on
@@ -783,7 +786,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
                     printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
                 }
 
-                gainCard(choice1, state, 0, currentPlayer);//Gain the card
+                gainCard(choice1, state, 2, currentPlayer);//Gain the card
                 x = 0;//No more buying cards
 
                 if (DEBUG) {
@@ -799,6 +802,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             temphand[i] = -1;
         }
         //Reset Hand
+
+        // Reset player coins
+        state->coins = backupCoins;
 
         return 0;
 
