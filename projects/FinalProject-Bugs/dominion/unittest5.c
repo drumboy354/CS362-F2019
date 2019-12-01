@@ -44,7 +44,10 @@ int main()
     else
     {
         printf("It should tally the score based on a combination of the player's deck and discard pile: %s\n", CHECK_MARK);
+        numPassedTests++;
     }
+
+    printf("%d out of %d tests passed\n", numPassedTests, totalTests);
 
     printf("########################################## END TEST: SCOREFOR ########################################\n\n");
 }

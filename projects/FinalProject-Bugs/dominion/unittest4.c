@@ -39,7 +39,10 @@ int main()
     else
     {
         printf("It should end the game if the supply of at least 3 types of cards are empty: %s\n", CHECK_MARK);
+        numPassedTests++;
     }
+
+    printf("%d out of %d tests passed\n", numPassedTests, totalTests);
 
     printf("########################################## END TEST: ISGAMEOVER ########################################\n\n");
 }
