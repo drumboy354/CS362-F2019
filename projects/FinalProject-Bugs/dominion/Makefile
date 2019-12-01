@@ -43,7 +43,7 @@ unittest6: unittest6.c dominionHelperFuncs.o dominion.o rngs.o
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
-unittestresults: unittest1 unittest2 unittest3
+unittestresults: unittest1 unittest2 unittest3 unittest4 unittest5 unittest6
 	./unittest1 &> unittestresult.out
 	./unittest2 >> unittestresult.out
 	./unittest3 >> unittestresult.out
