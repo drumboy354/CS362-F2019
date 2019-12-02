@@ -900,7 +900,13 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             int card_not_discarded = 1;//Flag for discard set!
             while(card_not_discarded) {
                 if (state->hand[currentPlayer][p] == estate) { //Found an estate card!
-                    state->coins += 4;//Add 4 coins to the amount of coins
+					
+					//Add 4 coins to the amount of coins
+					
+					//state->coins += 4; // REMOVED FOR BUG #8
+					*bonus += 4; // ADDED FOR BUG #8
+					updateCoins(currentPlayer, state, *bonus); // ADDED FOR BUG #8
+
                     state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][p];
                     state->discardCount[currentPlayer]++;
                     for (; p < state->handCount[currentPlayer]; p++) {
@@ -966,7 +972,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
 		if (choice1)
         {
-            state->coins = state->coins + 2;
+            //state->coins = state->coins + 2;  // REMOVED FOR BUG #8
+			*bonus += 2; // ADDED FOR BUG #8
+			updateCoins(currentPlayer, state, *bonus); // ADDED FOR BUG #8
         }
         else if (choice2)		//discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
         {
@@ -1073,18 +1081,28 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             tributeRevealedCards[1] = -1;
         }
 
-        for (i = 0; i <= 2; i ++) {
+        for (i = 0; i <= 2; i ++) { // CHANGED FROM <= to < fFOR BUG #7
             if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold) { //Treasure cards
-                state->coins += 2;
+
+                //state->coins += 2;  // REMOVED FOR BUG #8
+				*bonus += 2; // ADDED FOR BUG #8
+				updateCoins(currentPlayer, state, *bonus); // ADDED FOR BUG #8
             }
 
             else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall) { //Victory Card Found
                 drawCard(currentPlayer, state);
                 drawCard(currentPlayer, state);
             }
-            else { //Action Card
-                state->numActions = state->numActions + 2;
-            }
+
+			// ADDED FOR BUG #9
+			else if (tributeRevealedCards[i] >= adventurer && tributeRevealedCards[i] <= treasure_map) { //Action Card
+				state->numActions = state->numActions + 2;
+			}
+
+			// REMOVED FOR BUG #9
+            //else { //Action Card
+            //    state->numActions = state->numActions + 2;
+            //}
         }
 
         return 0;
@@ -1104,7 +1122,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
         for (i = 0; i < state->handCount[currentPlayer]; i++)
         {
-            if (i != handPos && i == state->hand[currentPlayer][choice1] && i != choice1)
+			// CHANGED "i" TO "state->hand[currentPlayer][i]" FOR FIXING BUG #10
+            if (i != handPos && state->hand[currentPlayer][i] == state->hand[currentPlayer][choice1] && i != choice1)
             {
                 j++;
             }
@@ -1184,7 +1203,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
     case embargo:
         //+2 Coins
-        state->coins = state->coins + 2;
+
+        //state->coins = state->coins + 2;   // REMOVED FOR BUG #8
+		*bonus += 2; // ADDED FOR BUG #8
+		updateCoins(currentPlayer, state, *bonus); // ADDED FOR BUG #8
 
         //see if selected pile is in play
         if ( state->supplyCount[choice1] == -1 )
