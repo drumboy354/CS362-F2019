@@ -1081,7 +1081,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             tributeRevealedCards[1] = -1;
         }
 
-        for (i = 0; i <= 2; i ++) { // CHANGED FROM <= to < fFOR BUG #7
+        for (i = 0; i < 2; i ++) { // CHANGED FROM <= to < FOR BUG #7
             if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold) { //Treasure cards
 
                 //state->coins += 2;  // REMOVED FOR BUG #8

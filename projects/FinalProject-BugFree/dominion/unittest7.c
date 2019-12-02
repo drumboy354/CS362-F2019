@@ -59,15 +59,18 @@ int main()
 	memcpy(&G2, &G1, sizeof(struct gameState));
 
 	printf("Number of action cards before tribute card played is: %d\n", G1.numActions);
-	printf("Number of coins before tribute card played is: %d\n\n", G1.coins);
-
+	printf("Number of coins before tribute card played is: %d\n", G1.coins);
+	printf("Number of cards in hand before tribute card played is: %d\n\n", G1.handCount[0]);
 	int result = cardEffect(tribute, -1, -1, -1, &G1, handPos, &bonus);
 	
 	printf("Number of action cards after tribute card played is: %d\n", G1.numActions);
-	printf("Number of coins after tribute card played is: %d\n\n", G1.coins);
+	printf("Number of coins after tribute card played is: %d\n", G1.coins);
+	printf("Number of cards in hand after tribute card played is: %d\n\n", G1.handCount[0]);
+
 	
 	Validate("player 1 should not gain any action cards", G1.numActions == G2.numActions);
 	Validate("player 1 should gain 4 coins", G1.coins == G2.coins + 4);
+	Validate("player 1 should not draw any cards", G1.handCount[0] == G2.handCount[0]);
 
 	printf("########### END TEST ###########\n\n");
 	return 0;
