@@ -17,39 +17,59 @@ dominionHelperFuncs.o: dominionHelperFuncs.h dominionHelperFuncs.c
 	gcc -c dominionHelperFuncs.c -g -std=c99 -Wall -fpic -lm
 	
 unittest1: unittest1.c dominionHelperFuncs.o dominion.o rngs.o
-	gcc  -o unittest1 -g unittest1.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	gcc  -o unittest1 -g -w unittest1.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
 	./unittest1
 
 unittest2: unittest2.c dominionHelperFuncs.o dominion.o rngs.o
-	gcc  -o unittest2 -g unittest2.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	gcc  -o unittest2 -g -w unittest2.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
 	./unittest2
 
 unittest3: unittest3.c dominionHelperFuncs.o dominion.o rngs.o
-	gcc  -o unittest3 -g unittest3.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	gcc  -o unittest3 -g -w unittest3.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
 	./unittest3
 
 unittest4: unittest4.c dominionHelperFuncs.o dominion.o rngs.o
-	gcc  -o unittest4 -g unittest4.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	gcc  -o unittest4 -g -w unittest4.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
 	./unittest4
 
 unittest5: unittest5.c dominionHelperFuncs.o dominion.o rngs.o
-	gcc  -o unittest5 -g unittest5.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	gcc  -o unittest5 -g -w unittest5.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
 	./unittest5
 
 unittest6: unittest6.c dominionHelperFuncs.o dominion.o rngs.o
-	gcc  -o unittest6 -g unittest6.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	gcc  -o unittest6 -g -w unittest6.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
 	./unittest6
+
+unittest7: unittest7.c dominionHelperFuncs.o dominion.o rngs.o
+	gcc  -o unittest7 -g -w unittest7.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	./unittest7
+
+unittest8: unittest8.c dominionHelperFuncs.o dominion.o rngs.o
+	gcc  -o unittest8 -g -w unittest8.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	./unittest8
+
+unittest9: unittest9.c dominionHelperFuncs.o dominion.o rngs.o
+	gcc  -o unittest9 -g -w unittest9.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	./unittest9
+
+unittest10: unittest10.c dominionHelperFuncs.o dominion.o rngs.o
+	gcc  -o unittest10 -g -w unittest10.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	./unittest10
 
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
-unittestresults: unittest1 unittest2 unittest3 unittest4 unittest5 unittest6
-	./unittest1 &> unittestresult.out
+unittestresults: unittest1 unittest2 unittest3 unittest4 unittest5 unittest6 unittest7 unittest8 unittest9 unittest10
+	./unittest1 > unittestresult.out
 	./unittest2 >> unittestresult.out
 	./unittest3 >> unittestresult.out
 	./unittest4 >> unittestresult.out
 	./unittest5 >> unittestresult.out
 	./unittest6 >> unittestresult.out
+	./unittest7 >> unittestresult.out
+	./unittest8 >> unittestresult.out
+	./unittest9 >> unittestresult.out
+	./unittest10 >> unittestresult.out
 	gcov dominion.c -f -b >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
@@ -66,4 +86,4 @@ all: playdom player
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
-	rm -f unittest1 unittest2 unittest3 unittest4 unittest5 unittest6
+	rm -f unittest1 unittest2 unittest3 unittest4 unittest5 unittest6 unittest7 unittest8 unittest9 unittest10
