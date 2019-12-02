@@ -33,7 +33,7 @@ int main()
 	initializeGame(numPlayers, k, seed, &G1);
 
 	printf("########### UNIT TEST: BUG #7 ###########\n");
-	printf("**Test: Unexpected gain in action cards from Tribute card**\n\n");
+	printf("**Test: Unexpected gain in action cards or cards drawn from Tribute card**\n\n");
 
 	// Setup: initialize game state, player and cards
 	memset(&G1, 23, sizeof(struct gameState));
