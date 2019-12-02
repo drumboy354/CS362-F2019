@@ -54,6 +54,7 @@ int main()
 	G1.deck[player_2][1] = silver;
 	G1.deck[player_2][2] = gold;
 
+	G1.coins = 0;
 	G1.numActions = 0;										// reset number of action cards to see effect of tribute card
 	memcpy(&G2, &G1, sizeof(struct gameState));
 
