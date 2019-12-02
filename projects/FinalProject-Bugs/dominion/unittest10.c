@@ -40,9 +40,9 @@ int main()
 	initializeGame(numPlayers, k, seed, &G1);
 
 	G1.handCount[player_1] = 3;
-	G1.hand[player_1][0] = ambassador;						// player 1 will play Ambassador card
+	G1.hand[player_1][0] = cutpurse;						
 	G1.hand[player_1][1] = cutpurse;						// player 1 will have 2 Cutpurses in hand
-	G1.hand[player_1][2] = cutpurse;
+	G1.hand[player_1][2] = ambassador;						// player 1 will play Ambassador card
 
 	memcpy(&G2, &G1, sizeof(struct gameState));
 
