@@ -18,49 +18,49 @@ dominionHelperFuncs.o: dominionHelperFuncs.h dominionHelperFuncs.c
 	
 unittest1: unittest1.c dominionHelperFuncs.o dominion.o rngs.o
 	gcc  -o unittest1 -g -w unittest1.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
-	./unittest1
+#	./unittest1
 
 unittest2: unittest2.c dominionHelperFuncs.o dominion.o rngs.o
 	gcc  -o unittest2 -g -w unittest2.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
-	./unittest2
+#	./unittest2
 
 unittest3: unittest3.c dominionHelperFuncs.o dominion.o rngs.o
 	gcc  -o unittest3 -g -w unittest3.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
-	./unittest3
+#	./unittest3
 
 unittest4: unittest4.c dominionHelperFuncs.o dominion.o rngs.o
 	gcc  -o unittest4 -g -w unittest4.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
-	./unittest4
+#	./unittest4
 
 unittest5: unittest5.c dominionHelperFuncs.o dominion.o rngs.o
 	gcc  -o unittest5 -g -w unittest5.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
-	./unittest5
+#	./unittest5
 
 unittest6: unittest6.c dominionHelperFuncs.o dominion.o rngs.o
 	gcc  -o unittest6 -g -w unittest6.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
-	./unittest6
+#	./unittest6
 
 unittest7: unittest7.c dominionHelperFuncs.o dominion.o rngs.o
 	gcc  -o unittest7 -g -w unittest7.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
-	./unittest7
+#	./unittest7
 
 unittest8: unittest8.c dominionHelperFuncs.o dominion.o rngs.o
 	gcc  -o unittest8 -g -w unittest8.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
-	./unittest8
+#	./unittest8
 
 unittest9: unittest9.c dominionHelperFuncs.o dominion.o rngs.o
 	gcc  -o unittest9 -g -w unittest9.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
-	./unittest9
+#	./unittest9
 
 unittest10: unittest10.c dominionHelperFuncs.o dominion.o rngs.o
 	gcc  -o unittest10 -g -w unittest10.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
-	./unittest10
+#	./unittest10
 
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
 unittestresults: unittest1 unittest2 unittest3 unittest4 unittest5 unittest6 unittest7 unittest8 unittest9 unittest10
-	./unittest1 > unittestresult.out
+	./unittest1 &> unittestresult.out
 	./unittest2 >> unittestresult.out
 	./unittest3 >> unittestresult.out
 	./unittest4 >> unittestresult.out
