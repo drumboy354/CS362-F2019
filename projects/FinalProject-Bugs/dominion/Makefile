@@ -25,7 +25,7 @@ unittest2: unittest2.c dominionHelperFuncs.o dominion.o rngs.o
 #	./unittest2
 
 unittest3: unittest3.c dominionHelperFuncs.o dominion.o rngs.o
-	gc  -o unittest3 -g -w unittest3.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
+	gcc  -o unittest3 -g -w unittest3.c dominion.o dominionHelperFuncs.o rngs.o $(CFLAGS)
 #	./unittest3
 
 unittest4: unittest4.c dominionHelperFuncs.o dominion.o rngs.o
